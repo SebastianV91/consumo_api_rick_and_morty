@@ -1,4 +1,4 @@
-package com.api.rickmorty.entities;
+package com.api.rickmorty.infrastructure.entities;
 
 public class Character {
 
