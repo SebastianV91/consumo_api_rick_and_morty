@@ -1,4 +1,4 @@
-package com.api.rickmorty.infrastructure.entities;
+package com.api.rickmorty.domain.model;
 
 public class Location {
 
@@ -6,6 +6,13 @@ public class Location {
     private String name;
     private String type;
     private String dimension;
+
+    public Location(Integer id, String name, String type, String dimension) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.dimension = dimension;
+    }
 
     public Integer getId() {
         return id;
@@ -38,4 +45,5 @@ public class Location {
     public void setDimension(String dimension) {
         this.dimension = dimension;
     }
+
 }
