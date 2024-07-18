@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface RetrieveLocationUseCase {
 
-    Optional<Location> getLocation(Integer id);
+    Optional<Location> getLocationById(Integer id);
 
     List<Location> getAllLocations();
 
