@@ -2,12 +2,10 @@ package com.api.rickmorty.infrastructure.entities;
 
 import com.api.rickmorty.domain.model.Location;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "location")
 public class LocationEntity {
 
     @Id
