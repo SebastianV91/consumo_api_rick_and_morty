@@ -2,6 +2,7 @@ package com.api.rickmorty.infrastructure.controllers;
 
 import com.api.rickmorty.application.services.LocationService;
 import com.api.rickmorty.domain.model.Location;
+import com.api.rickmorty.infrastructure.dto.LocationDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -51,6 +52,12 @@ public class LocationController {
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/additional-info-location")
+    public ResponseEntity<LocationDTO> getAdditionalInfoLocation(){
+        LocationDTO locationDTO = locationService.getAdditionalLocationInfo();
+        return new ResponseEntity<>(locationDTO, HttpStatus.OK);
     }
 
 }
