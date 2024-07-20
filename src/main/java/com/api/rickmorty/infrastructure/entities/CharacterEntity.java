@@ -1,7 +1,15 @@
-package com.api.rickmorty.domain.model;
+package com.api.rickmorty.infrastructure.entities;
 
-public class Character {
+import com.api.rickmorty.domain.model.Character;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "character")
+public class CharacterEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String status;
@@ -10,7 +18,10 @@ public class Character {
     private String gender;
     private Integer location_id;
 
-    public Character(Integer id, String name, String status, String species, String type, String gender, Integer location_id) {
+    public CharacterEntity() {
+    }
+
+    public CharacterEntity(Integer id, String name, String status, String species, String type, String gender, Integer location_id) {
         this.id = id;
         this.name = name;
         this.status = status;
@@ -18,6 +29,14 @@ public class Character {
         this.type = type;
         this.gender = gender;
         this.location_id = location_id;
+    }
+
+    public static CharacterEntity fromDomainModel(Character character){
+        return new CharacterEntity(character.getId(), character.getName(), character.getStatus(), character.getSpecies(), character.getType(), character.getGender(), character.getLocation_id());
+    }
+
+    public Character toDomainModel(){
+        return new Character(id, name, status, species, type, gender, location_id);
     }
 
     public Integer getId() {

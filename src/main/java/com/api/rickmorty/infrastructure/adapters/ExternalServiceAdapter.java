@@ -1,6 +1,7 @@
 package com.api.rickmorty.infrastructure.adapters;
 
 import com.api.rickmorty.domain.ports.out.ExternalServicePort;
+import com.api.rickmorty.infrastructure.dto.CharacterDTO;
 import com.api.rickmorty.infrastructure.dto.LocationDTO;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
@@ -18,6 +19,7 @@ public class ExternalServiceAdapter implements ExternalServicePort {
     }
 
     private static String locationApi = "https://rickandmortyapi.com/api/location";
+    private static String characterApi = "https://rickandmortyapi.com/api/character";
 
     @Override
     public LocationDTO getAdditionalLocationInfo() {
@@ -31,4 +33,19 @@ public class ExternalServiceAdapter implements ExternalServicePort {
 
         return response.getBody();
     }
+
+    @Override
+    public CharacterDTO getAdditionalCharacterInfo() {
+
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<String> entity = new HttpEntity<>(httpHeaders);
+
+        ResponseEntity<CharacterDTO> response = restTemplate.exchange(characterApi, HttpMethod.GET,
+                entity, CharacterDTO.class);
+
+        return response.getBody();
+    }
+
+
 }
